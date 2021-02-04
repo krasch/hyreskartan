@@ -1,8 +1,9 @@
-// brewer purples
 const grey = "#dddddd"
+
+// brewer purples
 const colors = ["#fcfbfd", "#f0eef6","#dedded","#c6c6e1","#abaad1","#918dc2","#796eb2","#65489f","#52238d","#3f007d"];
 
-// width = 25 with 9 colours
+// how wide is each colour interval (in number of förmedlade apartments)
 const width = 25;
 
 const maxColourIndex = colors.length -1;
@@ -20,7 +21,7 @@ function color(d) {
     return colors[colourIndex];
 }
 
-function* legendEntries() {
+function* colorLegend() {
     for (let i=0; i<colors.length - 1; i++){
         const lowerBound = i*width;
         const upperBound = (i+1)*width;

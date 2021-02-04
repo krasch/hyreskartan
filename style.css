@@ -22,3 +22,17 @@ html, body {
     margin-right: 8px;
     opacity: 0.7;
 }
+
+/* https://stackoverflow.com/questions/33614912/how-to-locate-leaflet-zoom-control-in-a-desired-position */
+.leaflet-verticalcenter {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    top: 50%; /* possible because the placeholder's parent is the map */
+    transform: translateY(-50%); /* using the CSS3 Transform technique */
+    padding-top: 10px;
+}
+
+.leaflet-verticalcenter .leaflet-control .leaflet-info {
+    margin-bottom: 10px;
+}
