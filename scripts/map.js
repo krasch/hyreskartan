@@ -22,6 +22,9 @@ let map = initMap();
 // initial apartment filter selection
 let selection = getInitialSelection();
 
+// todo get rid of "counts" global variable
+createDataIndex();
+
 // boundaries for the stadsdelar
 let polygons = new GeoJsonWrapper(stadsdelar).addTo(map);
 

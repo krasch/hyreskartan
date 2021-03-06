@@ -31,6 +31,29 @@ function MultiCheckbox(container, name, initialSelection){
     }
 }
 
+
+function SingleCheckbox(container, name, displayedName, isInitiallyChecked){
+
+    let innerContainer =  L.DomUtil.create("fieldset", "select-"+name, container);
+
+    let input = L.DomUtil.create("input", null, innerContainer);
+    input.type = "checkbox";
+    input.name = name;
+    input.id = "select-" + name;
+
+     // is this checkbox pre-selected?
+    if (isInitiallyChecked)
+        input.checked = true;
+
+    // the label, todo set "for"
+    let label = L.DomUtil.create("label", null, innerContainer);
+    label.innerHTML = displayedName;
+
+    this.getCurrentSelection = function(){
+        return input.checked;
+    }
+}
+
 function WaitingTimesSelection(container, name, initialValue) {
 
     initSlider = function(){
@@ -112,7 +135,8 @@ L.Control.CustomControlPanel = L.Control.extend({
         // add selectors for the other possible settings
         this.controls["rooms"] = new MultiCheckbox(this.container, "rooms", this.selection.rooms);
         this.controls["apartmentType"] = new MultiCheckbox(this.container, "apartmentType", this.selection.apartmentType);
-        this.controls["buildingType"] = new MultiCheckbox(this.container, "buildingType", this.selection.buildingType);
+        this.controls["korttid"] = new SingleCheckbox(this.container, "korttid", "inkludera korttid", this.selection.korttid);
+        this.controls["nyproduktion"] = new SingleCheckbox(this.container, "nyproduktion", "inkludera nyproduktion", this.selection.nyproduktion);
 
         // wire up the event handler
         L.DomEvent.on(this.container, "input", this.onInputChange, this);
