@@ -36,3 +36,36 @@ html, body {
 .leaflet-verticalcenter .leaflet-control .leaflet-info {
     margin-bottom: 10px;
 }
+
+
+.leaflet-container {
+    background: white;
+}
+
+
+.kommun {
+  stroke: #efefef;
+  fill: none;
+  stroke-width: 1;
+  stroke-dasharray: 5,5;
+}
+
+
+.stockholm {
+  stroke: #ccc;
+  fill: none;
+  stroke-width: 1;
+}
+
+.vatten {
+  fill: #2d6bd2;
+  /*fill-opacity: 1;*/
+  fill-opacity: 0.3;
+  stroke-width: 0;
+}
+
+.stadsdel {
+  stroke: #eee;
+  stroke-width: 1;
+  fill-opacity: 1;
+}

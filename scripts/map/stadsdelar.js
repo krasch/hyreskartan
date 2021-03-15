@@ -38,11 +38,11 @@ function GeoJsonWrapper(polygons){
     }
 
 
-    this.layer = L.geoJson(polygons, {onEachFeature: bla, style: initialStyle}).bindTooltip(tooltip);
+    layer = L.geoJson(polygons, {onEachFeature: bla, className: "stadsdel"}).bindTooltip(tooltip);
 
     // just some sugar to make this behave like L.geoJson
     this.addTo = function(map){
-        this.layer.addTo(map);
+        layer.addTo(map);
         return this;
     }
 
@@ -50,8 +50,11 @@ function GeoJsonWrapper(polygons){
         let currentCounts = lookupWaitingTimes(selection);
 
         // is there a way outside setStyle to overwrite feature values?
-        this.layer.setStyle(function(feature){
-            feature.properties.count = currentCounts[name(feature)];
+        layer.setStyle(function(feature){
+            if (currentCounts[name(feature)] === undefined)
+                feature.properties.count = 0;
+            else
+                feature.properties.count = currentCounts[name(feature)];
             return updateColor(feature);
         });
 

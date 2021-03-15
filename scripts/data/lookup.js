@@ -18,8 +18,6 @@ function selectionMatchesRow(selection, row){
         && selection.apartmentType[row.apartmentType] === true;
 }
 
-console.log(counts["index"]);
-
 function* getMatchingRows(selection){
     for (let rowId in counts["index"]){
         let row = counts["index"][rowId];
@@ -33,6 +31,7 @@ function* getMatchingRows(selection){
 
 
 function lookupWaitingTimes(selection) {
+    // todo just do a filter
     //console.time('someFunction')
     let matchingRows = Array.from(getMatchingRows(selection));
     if (matchingRows.length === 0)

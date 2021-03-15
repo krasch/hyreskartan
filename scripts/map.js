@@ -5,10 +5,11 @@ function initMap(){
     // add two additional "corners": verticalcenterleft and verticalcenterright
     addControlPlaceholders(map);
 
-    /*L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    /*let x = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 14,
     attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-    }).addTo(map);*/
+    }).addTo(map);
+    x.options.opacity = 0.4;*/
 
     // zoom buttons
     L.control.scale({"position": "bottomright"}).addTo(map);
@@ -28,11 +29,15 @@ createDataIndex();
 // boundaries for the stadsdelar
 let polygons = new GeoJsonWrapper(stadsdelar).addTo(map);
 
+L.geoJson(vatten, {className: "vatten"}).addTo(map);
+L.geoJson(kommuner, {className: "kommun"}).addTo(map);
+L.geoJson(stockholm, {className: "stockholm"}).addTo(map);
+
 // add control panel to change filter selection
 // also gets reference to the polygons, so can update them whenever they change
-L.control.customControlPanel({ position: 'verticalcenterleft', polygons: polygons, selection: selection}).addTo(map);
+L.control.customControlPanel({ position: 'verticalcenterleft', updateMap: polygons.update, selection: selection}).addTo(map);
 
 // add legend
-initLegend("verticalcenterright").addTo(map);
+//initLegend("verticalcenterright").addTo(map);
 
 
