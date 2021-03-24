@@ -1,0 +1,26 @@
+/* overwrite default leaflet popup styling */
+.leaflet-popup-tip {
+    width: 0px;
+    height: 0px;
+  }
+
+.leaflet-popup-close-button {
+    visibility: hidden;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 1px;
+}
+
+/* Put own styling */
+.tooltip {
+    display: flex;
+    flex-direction: column;
+    max-width: 10rem;
+}
+
+.tooltip > h1 {
+    font-style: normal;
+    font-size: 0.75rem;
+    color: #555;
+}

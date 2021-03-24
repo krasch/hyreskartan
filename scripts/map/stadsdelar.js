@@ -1,34 +1,35 @@
 function GeoJsonWrapper(polygons){
-    function name(feature){
-        return feature.properties.NAMN.toLowerCase();
+
+    function formatName(feature){
+        let name = feature.properties.NAMN.toLowerCase();
+        let nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
+
+        if (nameCapitalized.startsWith("Ulvsunda industriomr"))
+            nameCapitalized = "Ulvsunda industriområde";
+
+        return nameCapitalized;
     }
 
-    function initialStyle(feature, layer){
-        return {
-            fillColor: color(0),
-            weight: 1,
-            opacity: 1,
-            color: 'white',
-            fillOpacity: 0.7
-        };
+    function getTooltipText(feature){
+        const count = feature.properties.count;
+        const name = formatName(feature);
+
+        const header = "<h1> " + name + "</h1> ";
+        const body = "<span>" + texts["tooltipBefore"][language] + "<strong>"+count+"</strong>" + texts["tooltipAfter"][language] +"</span>"
+
+        return "<div class='tooltip'>" + header + body + "</div>";
     }
 
-    function bla(feature, layer){
-        /*layer.on('mouseover', function (e) {
-        layer.setStyle({
-            fillOpacity: 0.4
+    function configureTooltip(feature, layer){
+        const offset = {'offset': L.point(0,-50)}
+
+        layer.on('mouseover', function (e) {
+            layer.bindPopup(getTooltipText(feature), offset).openPopup();
         });
-        });
+
         layer.on('mouseout', function (e) {
-            layer.setStyle({
-                fillOpacity: 0
-            });
-        });*/
-    }
-
-    function tooltip(event){
-        const count = event.feature.properties.count;
-        return name(event.feature) + " " +count;
+            e.target.closePopup();
+        });
     }
 
     function updateColor(feature){
@@ -38,7 +39,7 @@ function GeoJsonWrapper(polygons){
     }
 
 
-    layer = L.geoJson(polygons, {onEachFeature: bla, className: "stadsdel"}).bindTooltip(tooltip);
+    let layer = L.geoJson(polygons, {className: "stadsdel", onEachFeature: configureTooltip});
 
     // just some sugar to make this behave like L.geoJson
     this.addTo = function(map){
@@ -51,12 +52,13 @@ function GeoJsonWrapper(polygons){
 
         // is there a way outside setStyle to overwrite feature values?
         layer.setStyle(function(feature){
-            if (currentCounts[name(feature)] === undefined)
+            const name = feature.properties.NAMN.toLowerCase();
+            if (currentCounts[name] === undefined)
                 feature.properties.count = 0;
             else
-                feature.properties.count = currentCounts[name(feature)];
+                feature.properties.count = currentCounts[name];
+            //console.log(feature.properties.count);
             return updateColor(feature);
         });
-
     }
 }

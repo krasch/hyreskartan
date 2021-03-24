@@ -1,17 +1,12 @@
 function selectionMatchesRow(selection, row){
-    // todo only during development
-    console.assert(JSON.stringify(Object.keys(selection).sort()) === JSON.stringify(Object.keys(row).concat("waitingTime").sort()))
-    console.assert(selection.rooms[row.rooms] !== undefined);  // this room number is known
-    console.assert(selection.apartmentType[row.apartmentType]  !== undefined);  // this apartment type is known
-
     // if korttid is selected, return flats that are korttid and flats that are not korttid
     // if korttid is not selected, only return flats that are not korttid
-    if (selection.korttid === false && row.korttid === true)
+    if (row.isShortContract && !selection.additionalFilters.includeShortContracts)
             return false
 
     // same with nyproduktion
-    if (selection.nyproduktion === false && row.nyproduktion === true)
-            return false
+    if (row.isNewbuild && !selection.additionalFilters.includeNewbuilds)
+        return false
 
     // this apartmentType/number of rooms was selected
     return selection.rooms[row.rooms] === true
@@ -25,6 +20,7 @@ function* getMatchingRows(selection){
         //console.log(selection);
         //console.log(selection.matches(row))
         if (selectionMatchesRow(selection, row))
+            //console.log("matches");
             yield rowId;
     }
 }
@@ -34,9 +30,10 @@ function lookupWaitingTimes(selection) {
     // todo just do a filter
     //console.time('someFunction')
     let matchingRows = Array.from(getMatchingRows(selection));
-    if (matchingRows.length === 0)
-        console.error("NO MATCHING ROWS FOUND, THIS CAN'T BE RIGHT")
+    //if (matchingRows.length === 0)
+    //    console.error("NO MATCHING ROWS FOUND, THIS CAN'T BE RIGHT")
     //console.timeEnd('someFunction')
+    //console.log(matchingRows.length)
 
     let waitingTimes = {}
     for (let area in counts["data"]) {
@@ -45,6 +42,8 @@ function lookupWaitingTimes(selection) {
         for (let rowId of matchingRows){
             waitingTimes[area] += counts["data"][area][rowId][selection.waitingTime];
         }
+
+
 
 
         // mariehäll good for checking that nyproduktion works correctly

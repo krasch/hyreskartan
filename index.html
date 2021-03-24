@@ -5,10 +5,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>>
+    <!--link rel="stylesheet" href="external/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="external/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script-->
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="control.css">
+
+    <link rel="stylesheet" href="style/base.css">
+    <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/polygons.css">
+    <link rel="stylesheet" href="style/panel.css">
+    <link rel="stylesheet" href="style/legend.css">
+    <link rel="stylesheet" href="style/tooltip.css">
+    <!--link rel="stylesheet" href="style/checkbox.css">
+    <link rel="stylesheet" href="style/range.css"-->
+
 
     <!-- all the data that is needed-->
     <script type="text/javascript" src="data/stadsdelar.js"></script>
@@ -19,19 +31,29 @@
 
     <!-- everything needed to display and interact with the map-->
     <script type="text/javascript" src="scripts/map/stadsdelar.js"></script>
-    <script type="text/javascript" src="scripts/map/kommuner.js"></script>
     <script type="text/javascript" src="scripts/map/legend.js"></script>
     <script type="text/javascript" src="scripts/map/color.js"></script>
+    <script type="text/javascript" src="scripts/map/title.js"></script>
     <script type="text/javascript" src="scripts/control/components.js"></script>
     <script type="text/javascript" src="scripts/control/corners.js"></script>
     <script type="text/javascript" src="scripts/control/panel.js"></script>
     <script type="text/javascript" src="scripts/data/index.js"></script>
     <script type="text/javascript" src="scripts/data/lookup.js"></script>
-    <script type="text/javascript" src="scripts/data/selection.js"></script>
+    <script type="text/javascript" src="scripts/data/state.js"></script>
+    <script type="text/javascript" src="scripts/texts.js"></script>
+
+    <!-- temporary -->
+    <script type="text/javascript" src="scripts/test.js"></script>
 
   </head>
   <body>
+    <div id="header">
+      <h1 id="title"></h1>
+    </div>
     <div id="map"></div>
-    <script type="text/javascript" src="scripts/map.js"></script> <!-- todo move to main imports -->
+    <div id="footer">
+      <a href="https://bostad.stockholm.se/statistik/">Data source</a>
+    </div>
+    <script type="text/javascript" src="scripts/main.js"></script> <!-- todo move to main imports -->
   </body>
 </html>

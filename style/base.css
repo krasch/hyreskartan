@@ -1,0 +1,10 @@
+body {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
+.leaflet-container {
+    background: white;
+}
+
+

@@ -1,0 +1,88 @@
+/* Control panel */
+.custom-control {
+    /* layout */
+    display: flex;
+    flex-direction: column;
+
+    /* style */
+    background: white;
+    border: 1px solid #ccc;
+}
+
+/* Row in the control panel */
+.custom-control > .control-element {
+    /* layout */
+    padding: 5px 10px 5px 10px;
+
+    /* style */
+    border-top: 1px solid #efefef;
+}
+
+.custom-control > .control-element > .control-header {
+    font-weight: bold;
+}
+
+/* Collection of checkboxes, horizontal layout*/
+fieldset.fieldset-horizontal {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+
+    /* style */
+    border: none;
+}
+
+/* Collection of checkboxes, vertical layout*/
+fieldset.fieldset-vertical {
+    /* layout */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+
+    /* style */
+    border: none;
+}
+
+/* "label" is the container that contains both checkbox and text */
+fieldset > label {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px; /* Space between checkboxes */
+    align-items: center; /* vertically aligns text and checkbox */
+}
+
+
+input[type="checkbox"] {
+    /* layout */
+    margin: 0 0.2rem 0 0; /* make some space between checkbox and label */
+}
+
+/* container around slider and all its utility elements */
+.slider-area {
+    /* layout */
+    display: flex;
+    flex-direction: row; /* Start and end year should be on same row as slider */
+    text-align: center;
+}
+
+/* slider */
+input[type="range"] {
+    /* layout */
+    width: 100%;
+    margin: 0 5px 0 5px; /* no top and bottom margin to make sure that text is aligned properly*/
+}
+
+/* Info line below slider */
+.slider-info {
+    /* layout */
+    margin-left: 2rem;
+
+    /* style */
+    color: rgb(157, 150, 142);
+    font-style: italic;
+}
+
