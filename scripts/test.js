@@ -6,19 +6,17 @@ function sumDictValues(dict){
 }
 
 function stateWithEverythingSelected(){
-    let selection = new State();
-    for (let apartmentType in selection.apartmentType)
-        selection.apartmentType[apartmentType] = true;
-    for (let numRooms in selection.rooms)
-       selection.rooms[numRooms] = true;
-    selection.additionalFilters.includeNewbuilds = true;
-    selection.additionalFilters.includeShortContracts = true;
-    selection.waitingTime = maxWaitingTime;
-    return selection;
+    return {
+        apartmentType: {standard: true, youth: true, student: true, senior: true},
+        rooms: {1: true, 2: true, 3: true, 4: true, 5: true},
+        additionalFilters: {includeNewbuilds: true, includeShortContracts: true},
+        waitingTime: maxWaitingTime
+    }
+
 }
 
 
-function testAreas(){
+function testAreas(database){
     const expected = {"abrahamsberg": 7, "akalla": 42, "aspudden": 57, "bagarmossen": 104, "bandhagen": 157,
         "beckomberga": 65, "björkhagen": 28, "blackeberg": 158, "bredäng": 209, "bromsten": 12, "djurgården": 4,
         "enskede gård": 19, "enskededalen": 11, "enskedefältet": 3, "fagersjö": 30, "farsta": 247, "farsta strand": 95,
@@ -38,7 +36,7 @@ function testAreas(){
 
     // everything is selected
     let selection = stateWithEverythingSelected();
-    let actual = lookupWaitingTimes(selection);
+    let actual = database.lookup(selection);
 
     // every expected area should show up in actual
     for (let area in expected)
@@ -54,7 +52,7 @@ function testAreas(){
 }
 
 
-function testYears(){
+function testYears(database){
     const expected = {"0": 0, "1": 237, "2": 475, "3": 769, "4": 1108, "5": 1551, "6": 2056, "7": 2667, "8": 3498,
         "9": 4387, "10": 5166, "11": 5973, "12": 6633, "13": 7194, "14": 7733, "15": 8085, "16": 8295, "17": 8390,
         "18": 8485, "19": 8553, "20": 8619, "21": 8686, "22": 8726, "23": 8758, "24": 8776, "25": 8785, "26": 8802,
@@ -66,12 +64,12 @@ function testYears(){
 
     for (let years=0; years<=maxWaitingTime; years+=1){
         selection.waitingTime = years;
-        let actual = sumDictValues(lookupWaitingTimes(selection));
+        let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[years], "Mismatch at years=" + years);
     }
 }
 
-function testRooms(){
+function testRooms(database){
     const expected = {"1": 3923, "2": 2903, "3": 1605, "4": 420, "5": 60}
 
     function unselectAllRooms(selectionLocal){
@@ -88,7 +86,7 @@ function testRooms(){
         selection = unselectAllRooms(selection);
         selection.rooms[numRooms] = true;
 
-        let actual = sumDictValues(lookupWaitingTimes(selection));
+        let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[numRooms], "Mismatch at numRooms=" + numRooms);
     }
 
@@ -96,12 +94,12 @@ function testRooms(){
     selection = unselectAllRooms(selection);
     selection.rooms[1] = true;
     selection.rooms[4] = true;
-    let actual = sumDictValues(lookupWaitingTimes(selection));
+    let actual = sumDictValues(database.lookup(selection));
     console.assert(actual === (expected[1] + expected[4]), "Mismatch at numRooms combination");
 
 }
 
-function testApartmentType(){
+function testApartmentType(database){
     const expected = {"senior": 104, "standard": 5344, "student": 2199, "youth": 1264};
 
     function unselectAllApartmentTypes(selectionLocal){
@@ -118,7 +116,7 @@ function testApartmentType(){
         selection = unselectAllApartmentTypes(selection);
         selection.apartmentType[apartmentType] = true;
 
-        let actual = sumDictValues(lookupWaitingTimes(selection));
+        let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[apartmentType], "Mismatch at apartmentType=" + apartmentType);
     }
 
@@ -126,71 +124,71 @@ function testApartmentType(){
     selection = unselectAllApartmentTypes(selection);
     selection.apartmentType.youth = true;
     selection.apartmentType.senior = true;
-    let actual = sumDictValues(lookupWaitingTimes(selection));
+    let actual = sumDictValues(database.lookup(selection));
     console.assert(actual === (expected["youth"] + expected["senior"]), "Mismatch at apartmentType combination");
 }
 
-function testIncludeNewbuild(){
+function testIncludeNewbuild(database){
     const expected = {"false": 7402, "true": 1509}
 
     let selection = stateWithEverythingSelected();
 
     // new buildings are included (-> both "false" and "true" are relevant")
-    let actual = sumDictValues(lookupWaitingTimes(selection));
+    let actual = sumDictValues(database.lookup(selection));
     console.assert(actual === (expected["false"] + expected["true"]), "Mismatch when including nyproduktion")
 
     // new buildings are excluded (-> onyl "false" is relevant")
     selection.additionalFilters.includeNewbuilds = false;
-    actual = sumDictValues(lookupWaitingTimes(selection));
+    actual = sumDictValues(database.lookup(selection));
     console.assert(actual === expected["false"], "Mismatch when not including nyproduktion");
 }
 
-function testIncludeShortContracts(){
+function testIncludeShortContracts(database){
     const expected = {"false": 7364, "true": 1547}
 
     let selection = stateWithEverythingSelected();
 
     // short contracts are included (-> both "false" and "true" are relevant")
-    let actual = sumDictValues(lookupWaitingTimes(selection));
+    let actual = sumDictValues(database.lookup(selection));
     console.assert(actual === (expected["false"] + expected["true"]), "Mismatch when including korttid")
 
     // short contracts are excluded (-> onyl "false" is relevant")
     selection.additionalFilters.includeShortContracts = false
-    actual = sumDictValues(lookupWaitingTimes(selection));
+    actual = sumDictValues(database.lookup(selection));
     console.assert(actual === expected["false"], "Mismatch when not including korttid");
 }
 
-function testCombination(){
+function testCombination(database){
     const expected = {"0": 0, "1": 1, "2": 1, "3": 5, "4": 9, "5": 16, "6": 25, "7": 35, "8": 44, "9": 86, "10": 116,
         "11": 151, "12": 188, "13": 234, "14": 266, "15": 301, "16": 324, "17": 334, "18": 345, "19": 354, "20": 361,
         "21": 369, "22": 372, "23": 375, "24": 377, "25": 377, "26": 378, "27": 379, "28": 382, "29": 383, "30": 384,
         "31": 385, "32": 387, "33": 391, "34": 391, "35": 391, "36": 391, "37": 391, "38": 391, "39": 391, "40": 391}
 
 
-    let selection = new State();
-    selection.additionalFilters.includeNewbuilds = true;
-    selection.apartmentType["standard"] = true;
-    selection.apartmentType["student"] = true;
-    selection.apartmentType["youth"] = true;
-    selection.rooms["4"] = true;
-    selection.rooms["5"] = true;
+    let selection = {
+        apartmentType: {standard: true, youth: true, student: true, senior: false},
+        rooms: {1: false, 2: false, 3: false, 4: true, 5: true},
+        additionalFilters: {includeNewbuilds: true, includeShortContracts: false},
+    }
 
     for (let years=0; years<=maxWaitingTime; years+=1){
         selection.waitingTime = years;
-        let actual = sumDictValues(lookupWaitingTimes(selection));
+        let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[years], "Combination mismatch at years=" + years);
     }
 }
 
-createDataIndex();
-testAreas();
-testYears();
-testRooms();
-testApartmentType();
-testIncludeNewbuild();
-testIncludeShortContracts();
-testCombination();
-console.log("All tests done");
+function runTests(database){
+    testAreas(database);
+    testYears(database);
+    testRooms(database);
+    testApartmentType(database);
+    testIncludeNewbuild(database);
+    testIncludeShortContracts(database);
+    testCombination(database);
+    console.log("All tests done");
+}
+
 
 
 

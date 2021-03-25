@@ -1,4 +1,4 @@
-/* allow word wrapping in tootltip */
+/* allow word wrapping in tooltip */
 .leaflet-tooltip {
     width: 10rem;
     white-space: normal;

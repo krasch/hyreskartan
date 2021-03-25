@@ -1,23 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
     <!--link rel="stylesheet" href="external/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="external/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script-->
 
-
-    <link rel="stylesheet" href="style/base.css">
     <link rel="stylesheet" href="style/layout.css">
-    <link rel="stylesheet" href="style/header.css">
-    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/polygons.css">
     <link rel="stylesheet" href="style/panel.css">
     <link rel="stylesheet" href="style/legend.css">
     <link rel="stylesheet" href="style/tooltip.css">
+
     <!--link rel="stylesheet" href="style/checkbox.css">
     <link rel="stylesheet" href="style/range.css"-->
 
@@ -30,31 +32,154 @@
     <script type="text/javascript" src="data/stockholm.js"></script>
 
     <!-- everything needed to display and interact with the map-->
-    <script type="text/javascript" src="scripts/map/stadsdelar.js"></script>
-    <script type="text/javascript" src="scripts/map/legend.js"></script>
-    <script type="text/javascript" src="scripts/map/color.js"></script>
-    <script type="text/javascript" src="scripts/map/title.js"></script>
-    <script type="text/javascript" src="scripts/map/tooltip.js"></script>
-    <script type="text/javascript" src="scripts/control/components.js"></script>
-    <script type="text/javascript" src="scripts/control/corners.js"></script>
-    <script type="text/javascript" src="scripts/control/panel.js"></script>
-    <script type="text/javascript" src="scripts/data/index.js"></script>
-    <script type="text/javascript" src="scripts/data/lookup.js"></script>
-    <script type="text/javascript" src="scripts/data/state.js"></script>
+    <script type="text/javascript" src="scripts/map.js"></script>
+    <script type="text/javascript" src="scripts/database.js"></script>
+    <script type="text/javascript" src="scripts/control.js"></script>
+    <script type="text/javascript" src="scripts/color.js"></script>
     <script type="text/javascript" src="scripts/texts.js"></script>
 
     <!-- temporary -->
     <script type="text/javascript" src="scripts/test.js"></script>
 
-  </head>
-  <body>
-    <div id="header">
-      <h1 id="title"></h1>
-    </div>
+</head>
+<body>
+
+<div id="header">
+    <h1 id="title">Var har jag chans att få hyresrätt i Stockholm?</h1>
+</div>
+
+<div id="content">
+    <!-- will be filled by Javascript -->
     <div id="map"></div>
-    <div id="footer">
-      <a href="https://bostad.stockholm.se/statistik/">Data source</a>
+
+    <h2 id="text-subtitle">
+        Denna kartan visar hur många hyresrätter som förmedlades genom Stockholms Bostadsförmedling under 2020.
+        Använd kartan för att kolla om du har chans att få en lägenhet i ditt favoritområde.
+    </h2>
+
+    <div id="control-panel">
+
+        <!-- waiting times slider -->
+        <div class="control-element">
+            <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön?</div>
+            <div class="slider-area">
+                <span>0&nbsp;år</span>
+                <input type="range" min="0" max="40" step="1" value="5" name="waitingTime" id="control-waitingTime">
+                <span>40&nbsp;år</span>
+            </div>
+            <div class="slider-info">
+                <span id="control-waitingTime-info">5</span> år
+            </div>
+        </div>
+
+        <!-- apartment type checkboxes -->
+        <div class="control-element">
+            <div class="control-element-title" id="text-apartmentType">Vilken typ av lägenhet söker du?</div>
+            <fieldset id="control-apartmentType">
+                <label>
+                    <input type="checkbox" name="apartmentType" value="standard" checked>
+                    <span id="text-standard">Vanlig hyresrätt</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="apartmentType" value="student">
+                    <span id="text-student">Student</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="apartmentType" value="youth">
+                    <span id="text-youth">Ungdom</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="apartmentType" value="senior">
+                    <span id="text-senior">Senior</span>
+                </label>
+            </fieldset>
+        </div>
+
+        <!-- number of rooms checkboxes -->
+        <div class="control-element">
+            <div class="control-element-title" id="text-rooms">Hur många rum?</div>
+            <fieldset id="control-rooms">
+                <label>
+                    <input type="checkbox" name="rooms" value="1" checked>
+                    <span>1</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="rooms" value="2" checked>
+                    <span>2</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="rooms" value="3" checked>
+                    <span>3</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="rooms" value="4" checked>
+                    <span>4</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="rooms" value="5" checked>
+                    <span>5+</span>
+                </label>
+            </fieldset>
+        </div>
+
+        <!-- number of rooms checkboxes -->
+        <div class="control-element">
+            <div class="control-element-title" id="text-additionalFilters">Övrigt</div>
+            <fieldset id="control-additionalFilters">
+                <label>
+                    <input type="checkbox" name="additionalFilters" value="includeNewbuilds" checked>
+                    <span id="text-includeShortContracts">Inkludera korttidskontrakt</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="additionalFilters" value="includeShortContracts">
+                    <span id="text-includeNewbuilds"> Inkludera nyproduktion</span>
+                </label>
+            </fieldset>
+        </div>
     </div>
-    <script type="text/javascript" src="scripts/main.js"></script> <!-- todo move to main imports -->
-  </body>
+
+    <div id="legend">
+        <span>Antal matchande lägenheter du hade kunnat få under 2020</span>
+        <div>
+            <i style="background:#005a32"></i>&gt;=100<br>
+            <i style="background:#238b45"></i>80 - 99<br>
+            <i style="background:#41ab5d"></i>60 - 79<br>
+            <i style="background:#74c476"></i>40 - 59<br>
+            <i style="background:#a1d99b"></i>20 - 39<br>
+            <i style="background:#c7e9c0"></i>1 - 19<br>
+            <i style="background:#f1f1f1"></i>0
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <a href="https://bostad.stockholm.se/statistik/">Data source</a>
+</div>
+
+<script type="text/javascript">
+    const LANGUAGE = "sv";
+
+    window.onload = () => {
+        let database = new WaitingTimesDatabase(counts);
+        runTests(database);
+
+        // draw the map outline
+        let map = initMap();
+
+        // event handler that triggers map redrawing
+        function updateMap() {
+            let selection = getCurrentSettingsFromControlPanel();
+            let counts = database.lookup(selection);
+            updateMapColors(map, counts);
+        }
+
+        // wire all input elements up - whenever user makes any changes, trigger map update
+        setupEventListeners(updateMap);
+
+        // fill map with initial colours
+        updateMap();
+    }
+</script>
+
+</body>
 </html>

@@ -1,0 +1,48 @@
+body {
+    font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
+#header {
+    border-bottom: 1px solid #ccc;
+}
+
+#header > h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: normal;
+}
+
+#sidebar {
+    background: transparent;
+}
+
+#content > h2 {
+    text-align: justify;
+    font-weight: normal;
+    background: white;
+    padding-right: 10px;
+}
+
+#legend {
+    border: 1px solid #ccc;
+}
+
+#legend i {
+    width: 18px;
+    height: 18px;
+}
+
+#footer {
+    border-top: 1px solid #ccc;
+}
+
+#footer > a {
+    color: #555;
+}
+
+.leaflet-container {
+    background: white;
+}
+
+

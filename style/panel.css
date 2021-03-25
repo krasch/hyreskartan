@@ -1,5 +1,5 @@
 /* Control panel */
-.custom-control {
+#control-panel {
     /* layout */
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
 }
 
 /* Row in the control panel */
-.custom-control > .control-element {
+#control-panel .control-element {
     /* layout */
     padding: 5px 10px 5px 10px;
 
@@ -18,12 +18,13 @@
     border-top: 1px solid #efefef;
 }
 
-.custom-control > .control-element > .control-header {
+/* Title in the control panel */
+#control-panel .control-element-title {
     font-weight: bold;
 }
 
-/* Collection of checkboxes, horizontal layout*/
-fieldset.fieldset-horizontal {
+/* Collection of checkboxes */
+#control-panel fieldset {
     /* layout */
     display: flex;
     flex-direction: row;
@@ -34,20 +35,9 @@ fieldset.fieldset-horizontal {
     border: none;
 }
 
-/* Collection of checkboxes, vertical layout*/
-fieldset.fieldset-vertical {
-    /* layout */
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-
-    /* style */
-    border: none;
-}
 
 /* "label" is the container that contains both checkbox and text */
-fieldset > label {
+#control-panel label {
     /* layout */
     display: flex;
     flex-direction: row;
@@ -56,13 +46,13 @@ fieldset > label {
 }
 
 
-input[type="checkbox"] {
+#control-panel input[type="checkbox"] {
     /* layout */
     margin: 0 0.2rem 0 0; /* make some space between checkbox and label */
 }
 
 /* container around slider and all its utility elements */
-.slider-area {
+#control-panel .slider-area {
     /* layout */
     display: flex;
     flex-direction: row; /* Start and end year should be on same row as slider */
@@ -70,14 +60,14 @@ input[type="checkbox"] {
 }
 
 /* slider */
-input[type="range"] {
+#control-panel input[type="range"] {
     /* layout */
     width: 100%;
     margin: 0 5px 0 5px; /* no top and bottom margin to make sure that text is aligned properly*/
 }
 
 /* Info line below slider */
-.slider-info {
+#control-panel .slider-info {
     /* layout */
     margin-left: 2rem;
 

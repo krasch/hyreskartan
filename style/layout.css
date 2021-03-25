@@ -1,30 +1,73 @@
-html, body {
+html {
+    height: 100%;
+}
+
+body {
     height: 100%;
     padding: 0;
-    margin: 0;
+    margin: 0 10px 0 10px;
     display: flex;
     flex-direction: column;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 0;
+    padding: 5px 0 5px 0;
+}
+
+#header > h1 {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    height: 100%;
+    display: grid;
+    /* will put map and control items into same grid cells, so they will end up on top of each other */
+    grid-template-columns: 23rem auto 10rem;
+    grid-template-rows: auto auto auto;
+}
+
+#text-subtitle {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1000;
+    margin-bottom: auto; /* so the div only extends as far as needed */
+    padding-left: 5px;
+}
+
+#control-panel {
+    grid-column: 1;
+    grid-row: 2;
+    z-index: 1000;
+    margin-bottom: auto;  /* so the div only extends as far as needed */
+}
+
+#legend {
+    grid-row: 2;
+    grid-column: 3;
+    z-index: 1000;
+    margin-right: 5px;
+    margin-left: auto;  /* so the div only extends as far as needed */
+    margin-bottom: auto;  /* so the div only extends as far as needed */
+    padding: 5px 20px 5px 5px;
 }
 
 #map {
     width: 100%;
     height: 100%;
-    flex: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
 }
 
-
-/* https://stackoverflow.com/questions/33614912/how-to-locate-leaflet-zoom-control-in-a-desired-position */
-.leaflet-verticalcenter {
-    position: absolute;
-    z-index: 1000;
-    pointer-events: none;
-    top: 50%; /* possible because the placeholder's parent is the map */
-    transform: translateY(-50%); /* using the CSS3 Transform technique */
-    padding-top: 10px;
+#footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0 5px 0;
 }
-
-.leaflet-verticalcenter .leaflet-control .leaflet-info {
-    margin-bottom: 10px;
-}
-
 
