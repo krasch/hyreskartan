@@ -5,7 +5,7 @@ const white = "white";
 const purples = ["#fcfbfd", "#f0eef6","#dedded","#c6c6e1","#abaad1","#918dc2","#796eb2","#65489f","#52238d","#3f007d"];
 const yellowGreens = ["#ffffe5", "#f7fcb9", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443", "#006837", "#004529"];
 const greens = ["#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476","#41ab5d","#238b45","#006d2c","#00441b"]; // removed #f7fcf5 because too light ,
-const greens2 = ["#edf8e9", "#c7e9c0", "#a1d99b","#74c476","#31a354","#006d2c"]; // removed #f7fcf5 because too light ,
+const greens2 = ["#c7e9c0", "#a1d99b","#74c476","#41ab5d", "#238b45", "#005a32"]; // removed #f7fcf5 because too light ,
 const colors = greens2;
 
 // how wide is each colour interval (in number of förmedlade apartments)

@@ -1,11 +1,11 @@
 const texts = {
     "title": {"sv": "Var har jag chans att få hyresrätt i Stockholm?",
         "en": "Where do you have a chance to get a rental apartment in Stockholm?"},
-    "subtitle": {"sv": "Denna kartan visar hur många hyresrätter som förmedlades genom Stockholms Bostadsförmedlingen under 2020. " +
+    "subtitle": {"sv": "Denna kartan visar hur många hyresrätter som förmedlades genom Stockholms Bostadsförmedling under 2020. " +
             "Använd kartan för att kolla om du har chans att få en lägenhet i ditt favoritområde.", "en": "placeholder"},
     "legend": {"sv": "Antal matchande lägenheter du hade kunnat få under 2020", "en": "placeholder"},
     "tooltipBefore": {"sv": "Under 2020 förmedlades ", "en": "placeholder"},
-    "tooltipAfter": {"sv": " matchande lägenheter till personer som har samma eller mindre kötid än du.", "en": "placeholder"},
+    "tooltipAfter": {"sv": " matchande lägenheter till personer som har samma eller kortare kötid än du.", "en": "placeholder"},
     // apartmentType
     "standard": {"sv": "Vanlig hyresrätt", "en": "Standard hyresrätt"},
     "student": {"sv": "Student", "en": "Student"},

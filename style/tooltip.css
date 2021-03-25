@@ -1,15 +1,7 @@
-/* overwrite default leaflet popup styling */
-.leaflet-popup-tip {
-    width: 0px;
-    height: 0px;
-  }
-
-.leaflet-popup-close-button {
-    visibility: hidden;
-}
-
-.leaflet-popup-content-wrapper {
-    border-radius: 1px;
+/* allow word wrapping in tootltip */
+.leaflet-tooltip {
+    width: 10rem;
+    white-space: normal;
 }
 
 /* Put own styling */
@@ -24,3 +16,4 @@
     font-size: 0.75rem;
     color: #555;
 }
+
