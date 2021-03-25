@@ -1,0 +1,14 @@
+#legend {
+    border: 1px solid #ccc;
+    text-align: left;
+    line-height: 20px;
+    padding: 5px 0 5px 5px;
+    background: white;
+}
+
+#legend i {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 8px; /* space between square and text */
+}

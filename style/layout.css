@@ -24,10 +24,10 @@ body {
 
 #content {
     height: 100%;
-    margin: 0 10px 0 10px;
+    padding: 0 10px 0 15px;
     display: grid;
     /* will put map and control items into same grid cells, so they will end up on top of each other */
-    grid-template-columns: 23rem auto 10rem;
+    grid-template-columns: 23rem auto 9rem;
     grid-template-rows: auto auto auto;
 }
 
@@ -51,9 +51,8 @@ body {
     grid-column: 3;
     z-index: 1000;
     margin-right: 5px;
-    margin-left: auto;  /* so the div only extends as far as needed */
     margin-bottom: auto;  /* so the div only extends as far as needed */
-    padding: 5px 20px 5px 5px;
+    margin-left: auto;  /* so the div only extends as far as needed */
 }
 
 #map {
