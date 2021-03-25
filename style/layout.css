@@ -5,7 +5,7 @@ html {
 body {
     height: 100%;
     padding: 0;
-    margin: 0 10px 0 10px;
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
@@ -24,6 +24,7 @@ body {
 
 #content {
     height: 100%;
+    margin: 0 10px 0 10px;
     display: grid;
     /* will put map and control items into same grid cells, so they will end up on top of each other */
     grid-template-columns: 23rem auto 10rem;
