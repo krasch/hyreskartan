@@ -22,7 +22,7 @@
 .stadsdel {
   stroke: #ccc;
   stroke-width: 1;
-  fill-opacity: 1;
+  fill-opacity: 1.0;
 }
 
 .fill-1 {

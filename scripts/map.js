@@ -8,12 +8,6 @@ function initMap(){
     // scale info
     L.control.scale({"position": "bottomright"}).addTo(map);
 
-    // add two additional "corners": verticalcenterleft and verticalcenterright
-    //addControlPlaceholders(map);
-
-    // add legend
-    //initLegend("verticalcenterright").addTo(map);
-
     // background polygon layers: water, boundaries of the kommuner, bounderies of Stockholm kommun
     L.geoJson(vatten, {className: "vatten"}).addTo(map);
     L.geoJson(kommuner, {className: "kommun"}).addTo(map);
@@ -45,7 +39,7 @@ function updateMapColors(layer, currentCounts){
     // here is where the action happens: update every feature (=polygon) in this layer
     layer.setStyle(function(feature){
          // need to update the feature (=polygon) itself, so that the tooltip shows the correct numbers
-        feature.properties.count = getCurrentCount(feature.properties.NAMN);
+        feature.properties.count = getCurrentCount(feature.properties.name);
         // set the new fill colour
         return updateColor(feature);
     });
@@ -53,7 +47,7 @@ function updateMapColors(layer, currentCounts){
 
 function getTooltip(event){
     function formatName(feature){
-        let name = feature.properties.NAMN.toLowerCase();
+        let name = feature.properties.name.toLowerCase();
         let nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
 
         if (nameCapitalized.startsWith("Ulvsunda industriomr"))
