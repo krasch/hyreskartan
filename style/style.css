@@ -3,6 +3,16 @@ body {
     color: #555;
 }
 
+a {
+    color: #222;
+}
+
+a:visited {
+    color: #222;
+    font-style: normal;
+}
+
+
 #header {
     border-bottom: 1px solid #ccc;
 }
