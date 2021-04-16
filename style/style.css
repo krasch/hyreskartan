@@ -4,12 +4,7 @@ body {
 }
 
 a {
-    color: #222;
-}
-
-a:visited {
-    color: #222;
-    font-style: normal;
+    color: #555;
 }
 
 
