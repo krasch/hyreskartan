@@ -28,16 +28,16 @@
     <script type="text/javascript" src="scripts/database.js"></script>
     <script type="text/javascript" src="scripts/control.js"></script>
     <script type="text/javascript" src="scripts/color.js"></script>
-    <script type="text/javascript" src="scripts/texts.js"></script>
+    <script type="text/javascript" src="scripts/translate.js"></script>
 
     <!-- temporary -->
-    <script type="text/javascript" src="scripts/test.js"></script>
+    <!--script type="text/javascript" src="scripts/test.js"></script-->
 
 </head>
 <body>
 
 <div id="header">
-    <h1 id="title">Var har jag chans att få hyresrätt i Stockholm?</h1>
+    <h1 id="text-title">Var har jag chans att få hyresrätt i Stockholm?</h1>
 </div>
 
 <div id="content">
@@ -55,12 +55,12 @@
         <div class="control-element">
             <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön?</div>
             <div class="slider-area">
-                <span>0&nbsp;år</span>
+                <span>0</span>&nbsp;<span id="text-year1">år</span>
                 <input type="range" min="0" max="40" step="1" value="5" name="waitingTime" id="control-waitingTime">
-                <span>40&nbsp;år</span>
+                <span>40</span>&nbsp;<span id="text-year2">år</span>
             </div>
             <div class="slider-info">
-                <span id="control-waitingTime-info">5</span> år
+                <span id="control-waitingTime-info">5</span>&nbsp;<span id="text-year3">år</span>
             </div>
         </div>
 
@@ -131,7 +131,7 @@
     </div>
 
     <div id="legend">
-        <span>Antal matchande lägenheter du hade kunnat få under 2020</span>
+        <span id="text-legend">Antal matchande lägenheter du hade kunnat få under 2020</span>
         <div>
             <i style="background:#005a32"></i>&gt;=100<br>
             <i style="background:#238b45"></i>80 - 99<br>
@@ -145,16 +145,18 @@
 </div>
 
 <div id="footer">
-    <a href="data.html">Om datan</a>
-    <a href="https://krasch.io#about">Om krasch.io</a>
+    <a href="data.html" id="text-om-datan">Om datan</a>
+    <a href="https://krasch.io#about" id="text-om-mig">Om krasch.io</a>
+    <a href="#" id="select-language" onclick="setToEnglish()">English version</a>
 </div>
 
 <script type="text/javascript">
-    const LANGUAGE = "sv";
+    let LANGUAGE = "sv";
 
     window.onload = () => {
+
         let database = new WaitingTimesDatabase(counts);
-        runTests(database);
+        //runTests(database);
 
         // draw the map outline
         let map = initMap();
