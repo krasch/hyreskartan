@@ -3,10 +3,10 @@ function initMap(){
     let map = L.map('map').setView([59.33,17.93], 12);
 
     // zoom buttons
-    map.zoomControl.setPosition('topright');
+    map.zoomControl.setPosition('bottomright');
 
     // scale info
-    L.control.scale({"position": "bottomright"}).addTo(map);
+    L.control.scale({"position": "bottomleft"}).addTo(map);
 
     // background polygon layers: water, boundaries of the kommuner, bounderies of Stockholm kommun
     L.geoJson(vatten, {className: "vatten"}).addTo(map);

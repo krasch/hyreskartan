@@ -5,11 +5,19 @@ const texts = {
             "Använd kartan för att kolla om du har chans att få en lägenhet i ditt favoritområde.",
         "en": "This map shows how many apartments were allocated through Stockholms Bostadsförmedling in 2020. " +
              "Use this map to check if you would have a chance to get an apartment in your favourite area."},
-    "legend": {"sv": "Antal matchande lägenheter du hade kunnat få under 2020",
-               "en": "Number of matching apartments you could have gotten in 2020"},
-    "tooltipBefore": {"sv": "Under 2020 förmedlades ", "en": "In 2020, "},
-    "tooltipAfter": {"sv": " matchande lägenheter till personer som har samma eller kortare kötid än du.",
-                     "en": " matching apartments were rented to people that have the same or a shorter waiting time than you."},
+    "explanation": {"sv": "Färgarna visar hur många lägenheter du hade haft god chans att få om du hade anmält intresse. Dessa " +
+        "lägenheter matchar alla dina sökkriterier och förmedlades under 2020 till personer som då hade samma " +
+        "eller kortare kötid än du.",
+        "en": "The colours show how many apartments you would have had a good chance of getting, if you had registered " +
+            "your interest in them. These apartments match your search criteria and were rented to people that in 2020 had the same or a shorter " +
+            "waiting time than you."
+
+    },
+    "legend": {"sv": "Antalet matchande lägenheter du hade haft god chans att få under 2020",
+               "en": "Number of matching apartments you had a good chance of getting in 2020"},
+    "tooltipBefore": {"sv": "", "en": ""},
+    "tooltipAfter": {"sv": " matchande lägenheter du hade haft god chans att få under 2020",
+                     "en": " matching apartments you would have had a good chance of getting in 2020"},
     // apartmentType
     "standard": {"sv": "Vanlig hyresrätt", "en": "Standard hyresrätt"},
     "student": {"sv": "Student", "en": "Student"},
@@ -21,7 +29,7 @@ const texts = {
     // headings
     "rooms": {"sv": "Hur många rum?", "en": "How many rooms?"},
     "apartmentType": {"sv": "Vilken typ av lägenhet söker du?", "en": "Type of apartment?"},
-    "waitingTime": {"sv": "Hur länge har du stått i Bostadskön?", "en": "How long have you been on the bostadskö?"},
+    "waitingTime": {"sv": "Hur länge har du stått i Bostadskön (fram tills idag) ?", "en": "How long have you been on the bostadskö (until today) ?"},
     "additionalFilters": {"sv": "Övrigt", "en": "Other"},
     // random stuff
     "year1": {"sv": "år", "en": "years"},

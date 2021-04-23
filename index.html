@@ -53,7 +53,7 @@
 
         <!-- waiting times slider -->
         <div class="control-element">
-            <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön?</div>
+            <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön (fram tills idag) ?</div>
             <div class="slider-area">
                 <span>0</span>&nbsp;<span id="text-year1">år</span>
                 <input type="range" min="0" max="40" step="1" value="5" name="waitingTime" id="control-waitingTime">
@@ -130,8 +130,14 @@
         </div>
     </div>
 
+    <h2 id="text-explanation">
+        Färgarna visar hur många lägenheter du hade haft god chans att få om du hade anmält intresse. Dessa
+        lägenheter matchar alla dina sökkriterier och förmedlades under 2020 till personer som då hade samma
+        eller kortare kötid än du.
+    </h2>
+
     <div id="legend">
-        <span id="text-legend">Antal matchande lägenheter du hade kunnat få under 2020</span>
+        <span id="text-legend">Antalet matchande lägenheter du hade haft god chans att få under 2020</span>
         <div>
             <i style="background:#005a32"></i>&gt;=100<br>
             <i style="background:#238b45"></i>80 - 99<br>
