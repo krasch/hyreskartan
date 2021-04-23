@@ -1,6 +1,13 @@
 function initMap(){
-    // initialize zoomed on Stockholm center
-    let map = L.map('map').setView([59.33,17.93], 12);
+    let isSmallScreen = window.matchMedia("(max-width: 1024px)").matches;
+
+     // initialize zoomed on Stockholm center
+    // smaller map if on mobile
+    let map = null;
+    if (isSmallScreen)
+        map = L.map('map', {dragging: false, tap: false}).setView([59.33,18.00], 10);
+    else
+        map = L.map('map').setView([59.33,17.93], 12);
 
     // zoom buttons
     map.zoomControl.setPosition('bottomright');
