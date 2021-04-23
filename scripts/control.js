@@ -1,8 +1,21 @@
 function setupEventListeners(handler){
+
     // range
     let rangeInput = document.getElementById("control-waitingTime");
-    let rangeOutput = document.getElementById("control-waitingTime-info");
-    rangeInput.oninput = e => {rangeOutput.innerHTML = rangeInput.value; handler(e);};
+    let rangeOutputToday = document.getElementById("control-waitingTime-info-today");
+    let rangeOutputHistorical = document.getElementById("control-waitingTime-info-historical");
+
+    function displayRangeValue(){
+        let valueToday = rangeInput.value;
+        let valueHistorical = rangeInput.value -1;
+        if (valueHistorical < 0)
+            valueHistorical = 0;
+
+        rangeOutputToday.innerHTML = valueToday;
+        rangeOutputHistorical.innerHTML = valueHistorical;
+    }
+
+    rangeInput.oninput = e => {displayRangeValue(); handler(e);};
 
     // checkboxes
     for (let element of ["control-apartmentType", "control-rooms", "control-additionalFilters"])

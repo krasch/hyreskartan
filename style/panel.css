@@ -70,7 +70,9 @@
 #control-panel .slider-info {
     /* layout */
     margin-left: 2rem;
+}
 
+#control-panel .grey {
     /* style */
     color: rgb(157, 150, 142);
     font-style: italic;

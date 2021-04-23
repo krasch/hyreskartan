@@ -63,7 +63,7 @@ function testYears(database){
     let selection = stateWithEverythingSelected();
 
     for (let years=0; years<=maxWaitingTime; years+=1){
-        selection.waitingTime = years;
+        selection.waitingTime = years + 1;
         let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[years], "Mismatch at years=" + years);
     }
@@ -172,7 +172,7 @@ function testCombination(database){
     }
 
     for (let years=0; years<=maxWaitingTime; years+=1){
-        selection.waitingTime = years;
+        selection.waitingTime = years + 1;
         let actual = sumDictValues(database.lookup(selection));
         console.assert(actual === expected[years], "Combination mismatch at years=" + years);
     }

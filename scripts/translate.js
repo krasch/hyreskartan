@@ -35,6 +35,8 @@ const texts = {
     "year1": {"sv": "år", "en": "years"},
     "year2": {"sv": "år", "en": "years"},
     "year3": {"sv": "år", "en": "year(s)"},
+    "year4": {"sv": "år", "en": "year(s)"},
+    "in": {"sv": "i", "en": "in"},
     "om-datan": {"sv": "Om datan", "en": "About the data"},
     "om-mig": {"sv": "Om krasch.io", "en": "About krasch.io"},
 }

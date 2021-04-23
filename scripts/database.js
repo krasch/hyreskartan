@@ -37,12 +37,17 @@ function WaitingTimesDatabase(rawCounts) {
     this.lookup = function (selection) {
         let matchingRows = Array.from(this.getMatchingRowIds(selection));
 
+        // how long would the person have been on the waiting list in 2020?
+        let waitingTimeIn2020 = selection.waitingTime - 1;
+        if (waitingTimeIn2020 < 0)
+            waitingTimeIn2020 = 0;
+
         let waitingTimes = {}
         for (let area in this.data) {
             waitingTimes[area] = 0;
 
             for (let rowId of matchingRows) {
-                waitingTimes[area] += this.data[area][rowId][selection.waitingTime];
+                waitingTimes[area] += this.data[area][rowId][waitingTimeIn2020];
             }
         }
 
