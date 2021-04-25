@@ -5,7 +5,7 @@ function initMap(){
     // smaller map if on mobile
     let map = null;
     if (isSmallScreen)
-        map = L.map('map', {dragging: false, tap: false}).setView([59.33,18.00], 10);
+        map = L.map('map',).setView([59.33,18.00], 10);
     else
         map = L.map('map').setView([59.33,17.93], 12);
 

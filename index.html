@@ -3,28 +3,31 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Var räcker kötiden? Har du chans att få hyresrätt i ditt favoritområde?" />
+    <meta name="description" content="Var räcker kötiden? Har du chans att få hyresrätt i ditt favoritområde?"/>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@krasch_io" />
-    <meta name="twitter:creator" content="@krasch_io" />
-    <meta property="og:url" content="https://krasch.io/hyreskartan" />
-    <meta property="og:title" content="Hyreskartan Stockholm" />
-    <meta property="og:description" content="Var räcker kötiden? Har du chans att få hyresrätt i ditt favoritområde?" />
-    <meta property="og:image" content="https://krasch.io/hyreskartan/screenshot.png" />
-    <meta property="twitter:image:alt" content="Screenshot of Hyreskartan Stockholm" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@krasch_io"/>
+    <meta name="twitter:creator" content="@krasch_io"/>
+    <meta property="og:url" content="https://krasch.io/hyreskartan"/>
+    <meta property="og:title" content="Hyreskartan Stockholm"/>
+    <meta property="og:description" content="Var räcker kötiden? Har du chans att få hyresrätt i ditt favoritområde?"/>
+    <meta property="og:image" content="https://krasch.io/hyreskartan/screenshot.png"/>
+    <meta property="twitter:image:alt" content="Screenshot of Hyreskartan Stockholm"/>
 
     <title>Hyreskartan Stockholm</title>
 
-    <link rel="stylesheet" href="leaflet/leaflet.1.7.1.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="/>
-    <script src="leaflet/leaflet.1.7.1.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="></script>
+    <link rel="stylesheet" href="leaflet/leaflet.1.7.1.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="/>
+    <script src="leaflet/leaflet.1.7.1.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="></script>
 
+    <link rel="stylesheet" href="style/layout.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/geo.css">
     <link rel="stylesheet" href="style/legend.css">
     <link rel="stylesheet" href="style/panel.css">
     <link rel="stylesheet" href="style/tooltip.css">
-    <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/mobile.css">
 
     <script type="text/javascript" src="geojson/stadsdelar_utan_vatten.js"></script>
     <script type="text/javascript" src="geojson/vatten.js"></script>
@@ -54,6 +57,8 @@
 </div>
 
 <div id="content">
+    <div id="map"></div>
+
     <h2 id="text-subtitle">
         Denna kartan visar hur många hyresrätter som förmedlades genom Stockholms Bostadsförmedling under 2020.
         Använd kartan för att kolla om du har chans att få en lägenhet i ditt favoritområde.
@@ -65,18 +70,17 @@
         eller kortare kötid än du.
     </h2>
 
-    <!-- will be filled by Javascript -->
-    <div id="map"></div>
-
-
     <div id="control-panel">
 
         <!-- waiting times slider -->
         <div class="control-element">
-            <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön (fram tills idag) ?</div>
+            <div class="control-element-title" id="text-waitingTime"> Hur länge har du stått i Bostadskön (fram
+                tills idag) ?
+            </div>
             <div class="slider-area">
                 <span>0</span>&nbsp;<span id="text-year1">år</span>
-                <input type="range" min="0" max="40" step="1" value="5" name="waitingTime" id="control-waitingTime">
+                <input type="range" min="0" max="40" step="1" value="5" name="waitingTime"
+                       id="control-waitingTime">
                 <span>40</span>&nbsp;<span id="text-year2">år</span>
             </div>
             <div class="slider-info">
@@ -85,7 +89,7 @@
                 <span class="grey">( =</span>
                 <span id="control-waitingTime-info-historical" class="grey">4</span>&nbsp;
                 <span id="text-year4" class="grey">år</span>
-                <span id="text-in" class="grey">i</span>
+                <span id="text-in" class="grey">fram tills</span>
                 <span class="grey"> 2020) </span>
             </div>
         </div>
@@ -156,19 +160,19 @@
         </div>
     </div>
 
-
     <div id="legend">
         <span id="text-legend">Antalet matchande lägenheter du hade haft god chans att få under 2020</span>
         <div id="legend-colors">
-            <i style="background:#005a32"></i>&gt;=100<br>
-            <i style="background:#238b45"></i>80 - 99<br>
-            <i style="background:#41ab5d"></i>60 - 79<br>
-            <i style="background:#74c476"></i>40 - 59<br>
-            <i style="background:#a1d99b"></i>20 - 39<br>
-            <i style="background:#c7e9c0"></i>1 - 19<br>
-            <i style="background:#f1f1f1"></i>0
+            <div><i style="background:#005a32"></i>&gt;=100<br></div>
+            <div><i style="background:#238b45"></i>80 - 99<br></div>
+            <div><i style="background:#41ab5d"></i>60 - 79<br></div>
+            <div><i style="background:#74c476"></i>40 - 59<br></div>
+            <div><i style="background:#a1d99b"></i>20 - 39<br></div>
+            <div><i style="background:#c7e9c0"></i>1 - 19<br></div>
+            <div><i style="background:#f1f1f1"></i>0</div>
         </div>
     </div>
+
 </div>
 
 <div id="footer">
@@ -177,6 +181,7 @@
     <a href="https://krasch.io#about" id="text-om-mig">Om krasch.io</a>
     <a href="#" id="select-language" onclick="setToEnglish()">English version</a>
 </div>
+
 
 <script type="text/javascript">
     let LANGUAGE = "sv";

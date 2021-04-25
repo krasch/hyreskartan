@@ -1,0 +1,66 @@
+@media only screen and (max-width: 1024px) {
+
+    /* everything has a little bit of left and right padding */
+    body {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #content {
+        padding: 0;
+    }
+
+    /* one-column layout */
+    #content {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto 400px auto;
+        grid-template-areas:
+          "subtitle"
+          "explanation"
+          "controlpanel"
+          "map"
+          "legend";
+        row-gap: 1rem;
+    }
+
+    /* map no longer spans multiple cells but has it's own dedicated cell */
+    #map {
+        grid-area: map;
+    }
+
+    /* one-column layout */
+    #text-subtitle, #text-explanation, #control-panel, #legend {
+        margin: 0;
+        max-width: 500px; /* text becomes unreadable */
+        width: auto;
+        justify-self: center;
+    }
+
+    /* smaller font sizes */
+    #header > h1 {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    #text-subtitle, #text-explanation {
+        font-size: 0.8rem;
+        text-align: left;
+        padding-left: 5px; /* looks nicer if not directly aligns with box border below */
+    }
+
+    /* legend entries next to each other */
+    #legend-colors {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        white-space: nowrap;
+        gap: 15px
+    }
+    #legend i {
+        margin-right: 3px; /* less space between colour and text */
+    }
+
+    #footer {
+        gap: 1rem;
+    }
+}

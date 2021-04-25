@@ -22,11 +22,10 @@ a {
     background: transparent;
 }
 
-#content > h2 {
+#text-subtitle, #text-explanation {
     text-align: justify;
     font-weight: normal;
     background: white;
-    padding-right: 10px;
 }
 
 #legend {

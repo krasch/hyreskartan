@@ -1,19 +1,79 @@
-html {
-    height: 100%;
-}
-
 body {
-    height: 100%;
+    min-height: 100vh;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
 }
 
+/* **********************************************************************************
+                         main content
+   ***********************************************************************************/
+
+#content {
+    /* this pushes header to the top and footer to the bottom, everything else should be content*/
+    flex-grow: 1;
+    padding: 0 15px 0 15px;
+
+    display: grid;
+    grid-template-rows: 35% 35% 30%;
+    grid-template-columns: auto auto;
+
+    grid-template-areas:
+    "subtitle     explanation"
+    "controlpanel legend"
+    ".             .";
+
+}
+
+#text-subtitle, #text-explanation, #control-panel, #legend {
+    /* should be on top of map */
+    z-index: 999;
+
+    /* ensure no useless whitespace at bottom */
+    margin-bottom: auto;
+}
+
+/* map covers the full grid */
+#map {
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#text-subtitle {
+    grid-area: subtitle;
+    width: 23rem;
+    padding-left: 5px;
+}
+
+#text-explanation {
+    grid-area: explanation;
+    width: 23rem;
+    margin-left: auto; /* push to right */
+    padding-right: 5px;
+}
+
+#control-panel {
+    grid-area: controlpanel;
+    width: 23rem;
+}
+
+#legend {
+    grid-area: legend;
+    width: 10.5rem;
+    margin-left: auto;    /* push to right */
+}
+
+
+/* **********************************************************************************
+                         header and footer
+   ***********************************************************************************/
+
 #header {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 0 0;
+    width: 100%;  /* relevant in mobile view */
+    margin: 0;
     padding: 5px 0 5px 0;
 }
 
@@ -22,57 +82,6 @@ body {
     padding: 0;
 }
 
-#content {
-    height: 100%;
-    padding: 0 10px 0 15px;
-    display: grid;
-    /* will put map and control items into same grid cells, so they will end up on top of each other */
-    grid-template-columns: 23rem auto 12rem 10.5rem;
-    grid-template-rows: auto auto auto;
-}
-
-#text-subtitle {
-    grid-column: 1;
-    grid-row: 1;
-    z-index: 1000;
-    margin-bottom: auto; /* so the div only extends as far as needed */
-    padding-left: 5px;
-}
-
-#control-panel {
-    grid-column: 1;
-    grid-row: 2;
-    z-index: 1000;
-    margin-bottom: auto;  /* so the div only extends as far as needed */
-}
-
-#text-explanation {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row: 1;
-    z-index: 1000;
-    height: 10rem;  /* so text in english and swedish version has the same height */
-    margin-bottom: auto; /* so the div only extends as far as needed */
-    padding-left: 5px;
-}
-
-#legend {
-    grid-column: 4;
-    grid-row: 2;
-    z-index: 1000;
-    padding-right: 10px;
-    margin-bottom: auto;  /* so the div only extends as far as needed */
-    margin-left: auto;  /* so the div only extends as far as needed */
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-    grid-row-start: 1;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 5;
-}
 
 #footer {
     display: flex;
@@ -83,53 +92,4 @@ body {
     padding: 5px 0 5px 0;
 }
 
-@media only screen and (max-width: 1024px) {
-    body{
-        width: 49rem;
-    }
-
-    #header > h1 {
-        font-size: 1rem;
-        font-weight: bold;
-    }
-
-    #content > h2 {
-        font-size: 1rem;
-        padding: 1px;
-        margin: 1px;
-    }
-
-    #text-subtitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row: 1;
-        margin-right: 3rem;
-    }
-
-     #text-explanation {
-         grid-column-start: 4;
-         grid-column-end: 6;
-         height: 100%;
-     }
-
-     #legend {
-         grid-column-start: 5;
-         grid-column-end: 6;
-     }
-
-     #map {
-         grid-column-end: 6;
-     }
-
-
-    #content {
-        grid-template-columns: 10.5rem 12rem 2rem 12rem 10.5rem;
-        grid-template-rows: auto auto auto;
-    }
-
-    #control-panel fieldset {
-        flex-direction: column;
-    }
-
-}
 
